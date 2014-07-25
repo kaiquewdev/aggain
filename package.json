@@ -1,5 +1,5 @@
 {
-  "name": "agni-generator",
+  "name": "agni",
   "version": "0.0.0",
   "description": "Agni is a tool to help you organize your application structure based on simple principles.",
   "main": "index.js",
@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/fth-ship/agni/issues"
   },
-  "homepage": "https://github.com/fth-ship/agni"
+  "homepage": "https://github.com/fth-ship/agni",
+  "dependencies": {
+    "debug": "^1.0.4",
+    "should": "^4.0.4"
+  }
 }

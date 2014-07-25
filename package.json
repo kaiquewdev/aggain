@@ -1,0 +1,23 @@
+{
+  "name": "agni-generator",
+  "version": "0.0.0",
+  "description": "Agni is a tool to help you organize your application structure based on simple principles.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fth-ship/agni.git"
+  },
+  "keywords": [
+    "scaffolding",
+    "generator"
+  ],
+  "author": "Kaique da Silva <kaique.developer@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fth-ship/agni/issues"
+  },
+  "homepage": "https://github.com/fth-ship/agni"
+}

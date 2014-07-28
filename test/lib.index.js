@@ -13,11 +13,20 @@ describe('Agni', function () {
     agni.hasDotAgni('./test/case').should.not.be.ok;
   });
 
-  it('start structure', function (done) {
-    agni.start('./test/case', function(err) {
+  it('fire up the egine', function (done) {
+    agni.up('./test/case', function(err) {
       should.not.exist(err);
       fs.existsSync(dotAgniLocation).should.be.ok;
       fs.existsSync(path.resolve(dotAgniLocation, 'templates')).should.be.ok;
+      done();
+    });
+  });
+
+  it('start up the structure', function (done) {
+    agni.start('./test/case', 'new-structure', function(err) {
+      should.not.exist(err);
+      fs.existsSync(path.resolve(dir, 'new-structure')).should.be.ok;
+      fs.existsSync(path.resolve(dir, 'new-structure/.agni')).should.be.ok;
       done();
     });
   });
@@ -26,8 +35,8 @@ describe('Agni', function () {
     agni.hasDotAgni('./test/case').should.be.ok;
   });
 
-  it('fail to create dot agni dir in an existing context', function (done) {
-    agni.start('./test/case', function (err) {
+  it('fail to create dot agni dir in an existing context with up', function (done) {
+    agni.up('./test/case', function (err) {
       fs.existsSync(dotAgniLocation).should.be.ok;
       err.should.be.eql('.agni exists in the ' + dotAgniLocation.replace('/.agni', ''));
       done();

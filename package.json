@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/fth-ship/agni",
   "dependencies": {
+    "commander": "^2.3.0",
     "debug": "^1.0.4",
     "moment": "^2.7.0",
     "mustache": "^0.8.2",

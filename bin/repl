@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+var repl = require('repl');
+var agni = require('../');
+var pkg = require('../package');
+var agniRepl = null;
+var PS1 = ' > ';
+
+console.log(' ============== ');
+console.log(' %s v%s', pkg.name, pkg.version);
+console.log(' ============== ');
+console.log();
+
+agniRepl = repl.start({ prompt: PS1 });
+
+agniRepl.context.agni = agni;

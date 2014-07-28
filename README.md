@@ -7,10 +7,18 @@ with simple principles and agile to define and setup your flow and start to deve
 at the same way, maybe you know how to deal with well, but organize all that things has a high consumption of time and energy.
 Let's start talk about to create something amazing and simple to deal with.
 
-## Starting a clean agni project
+## Starting a clean agni project or seed the flame
+
+  Fire up the engine on a living project.
 
   ```
-  [sudo] agni --up or [sudo] agni --start
+  [sudo] agni --up
+  ```
+
+  Start up an structure from the group with the engine.
+
+  ```
+  [sudo] agni --start [name]
   ```
 
 ## Structure

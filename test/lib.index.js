@@ -56,6 +56,14 @@ describe('Agni', function () {
     });
   });
 
+  it('fail to create module file on the structure', function (done) {
+    agni.createModule(dir, 'test-case', function (err, timestamp) {
+      err.should.be.eql('Impossible to create the file on that structure, verify the modules/ directory.'); 
+      should.exist(timestamp);
+      done();
+    });
+  });
+
   it('create a module if exists module dir or index file', function (done) {
     agni.createModule(dir, 'test-another-case', function (err, timestamp) {
       should.not.exist(err); 

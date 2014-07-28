@@ -34,7 +34,7 @@ describe('Agni', function () {
     });
   });
 
-  it('create a module if not exist module dir or index file', function (done) {
+  it('create a module if not exists module dir or index file', function (done) {
     agni.createModule(dir, 'test-case', function (err, timestamp) {
       should.not.exist(err); 
       should.exist(timestamp);
@@ -42,7 +42,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'modules/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'modules/index.js'), 'utf-8').should.be.eql(
         '// file: modules/index.js\n' +
-        'exports.test-case = require(\'./test-case\');'  
+        'exports.test-case = require(\'./test-case\');\n'  
       );
       fs.existsSync(path.resolve(dir, 'modules/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'modules/test-case.js'), 'utf-8').should.be.eql(
@@ -51,6 +51,29 @@ describe('Agni', function () {
         '  // start here with test-case.js\n' + 
         '}\n' +
         'module.exports = exports = test-caseHandler;\n' 
+      );
+      done();
+    });
+  });
+
+  it('create a module if exists module dir or index file', function (done) {
+    agni.createModule(dir, 'test-another-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'modules/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'modules/index.js'), 'utf-8').should.be.eql(
+        '// file: modules/index.js\n' +
+        'exports.test-case = require(\'./test-case\');\n' + 
+        'exports.test-another-case = require(\'./test-another-case\');\n'
+      );
+      fs.existsSync(path.resolve(dir, 'modules/test-another-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'modules/test-another-case.js'), 'utf-8').should.be.eql(
+        '// file: modules/test-another-case.js - created at ' + timestamp + '\n' + 
+        'function test-another-caseHandler() {\n' +
+        '  // start here with test-another-case.js\n' + 
+        '}\n' +
+        'module.exports = exports = test-another-caseHandler;\n' 
       );
       done();
     });

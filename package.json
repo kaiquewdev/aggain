@@ -4,7 +4,7 @@
   "description": "Agni is a tool to help you organize your application structure based on simple principles.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "export DEBUG=agni; ./node_modules/mocha/bin/mocha ./test/*.test.js -R nyan"
   },
   "repository": {
     "type": "git",

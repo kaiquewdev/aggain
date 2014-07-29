@@ -20,6 +20,7 @@ agniCli
   .option('-t, --track [name]', 'Create a track event.')
   .option('-l, --log-pipe [name]', 'Create a log pipe configuration.')
   .option('-w, --web-admin [port]', 'Run a web admin application of agni.')
+  .option('-j, --job [name]', 'Create a job file with consumer and producer.')
   .parse(process.argv);
 
 // start of triggers area

@@ -8,13 +8,18 @@ agniCli
   .option('-u, --up', 'Fire up the agni engine, in a existing structure.')
   .option('-s, --start [name]', 'Start up the agni engine, for the first time.')
   .option('-m, --module [name]', 'Create an module file.')
-  .option('-em, --express-middleware [name]', 'Create an express middleware file.')
-  .option('-er, --express-route [uri] [name] [middlewares] [controller]', 'Create and route file with supply options.')
-  .option('-mm, --mongoose-model [name]', 'Create an moongoose model file.')
-  .option('-mp, --mongoose-plugin [name]', 'Create an mongoose plugin file.')
+  .option('-m, --middleware [name]', 'Create an express middleware file.')
+  .option('-r, --route [uri] [name] [middlewares] [controller]', 'Create and route file with supply options.')
+  .option('-mm, --model [name]', 'Create a model file.')
+  .option('-p, --plugin [name]', 'Create a plugin file.')
   .option('-b, --bin [name]', 'Create an executable file.')
   .option('-d, --doc [name]', 'Create an doc file.')
   .option('-dm, --doc-man [name]', 'Create an manual file.')
+  .option('-ci, --continuous-integration', 'Create a continuos integration configuration file.')
+  .option('-c, --configuration [name]', 'Create a configuration file.')
+  .option('-t, --track [name]', 'Create a track event.')
+  .option('-l, --log-pipe [name]', 'Create a log pipe configuration.')
+  .option('-w, --web-admin [port]', 'Run a web admin application of agni.')
   .parse(process.argv);
 
 // start of triggers area

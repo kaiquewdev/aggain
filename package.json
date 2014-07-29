@@ -27,6 +27,7 @@
     "mustache": "^0.8.2"
   },
   "devDependencies": {
+    "coveralls": "^2.11.1",
     "debug": "^1.0.4",
     "should": "^4.0.4"
   }

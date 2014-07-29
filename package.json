@@ -5,7 +5,7 @@
   "bin": "./bin/agni",
   "main": "index.js",
   "scripts": {
-    "test": "export DEBUG=agni; ./node_modules/mocha/bin/mocha ./test/*.test.js -R nyan"
+    "test": "export DEBUG=agni; ./node_modules/mocha/bin/mocha --report lcovonly -- -R spec ./test/**/*.test.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,6 @@
     "mustache": "^0.8.2"
   },
   "devDependencies": {
-    "coveralls": "^2.11.1",
     "debug": "^1.0.4",
     "should": "^4.0.4"
   }

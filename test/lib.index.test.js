@@ -218,6 +218,63 @@ describe('Agni', function () {
     });
   });
 
+  it('create a plugin if not exists plugin dir or index file', function (done) {
+    agni.createPlugin(dir, 'test-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'plugins/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'plugins/index.js'), 'utf-8').should.be.eql(
+        '// file: plugins/index.js\n' +
+        'exports.test-case = require(\'./test-case\');\n'  
+      );
+      fs.existsSync(path.resolve(dir, 'plugins/test-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'plugins/test-case.js'), 'utf-8').should.be.eql(
+        '// file: plugins/test-case.js - created at ' + timestamp + '\n' + 
+        'function test-caseHandler(schema, options) {\n' +
+        '  options = options || {};\n' +
+        '\n' +
+        '  // start with plugin here\n' +
+        '}\n' +
+        'module.exports = exports = test-caseHandler;\n' 
+      );
+      done();
+    });
+  });
+
+  it('fail to create plugin file on the structure', function (done) {
+    agni.createPlugin(dir, 'test-case', function (err, timestamp) {
+      err.should.be.eql('Impossible to create the file on that structure, verify the plugins/ directory.'); 
+      should.exist(timestamp);
+      done();
+    });
+  });
+
+  it('create a plugin if exists plugin dir or index file', function (done) {
+    agni.createPlugin(dir, 'test-another-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'plugins/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'plugins/index.js'), 'utf-8').should.be.eql(
+        '// file: plugins/index.js\n' +
+        'exports.test-case = require(\'./test-case\');\n' + 
+        'exports.test-another-case = require(\'./test-another-case\');\n'
+      );
+      fs.existsSync(path.resolve(dir, 'plugins/test-another-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'plugins/test-another-case.js'), 'utf-8').should.be.eql(
+        '// file: plugins/test-another-case.js - created at ' + timestamp + '\n' + 
+        'function test-another-caseHandler(schema, options) {\n' +
+        '  options = options || {};\n' +
+        '\n' +
+        '  // start with plugin here\n' +
+        '}\n' +
+        'module.exports = exports = test-another-caseHandler;\n'
+      );
+      done();
+    });
+  });
+
   after(function () {
     exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
     exec('rm -rf ' + dir + '/*', console.log.bind(console));

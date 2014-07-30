@@ -12,7 +12,6 @@ agniCli
   .option('-r, --route [uri] [method] [name] [middlewares] [controller] [view] or [rest]', 'Create route file with supply options.')
   .option('-u, --uri [path]', 'Work with route command to put a route in a method.')
   .option('-mt, --method [name]', 'Work with route command to put an method on route.')
-  .option('-sc, --schema [name]', 'Create a schema to work with model')
   .option('-mm, --model [name]', 'Create a model file to work with schema, modules or plugins.')
   .option('-p, --plugin [name]', 'Create a plugin file to work with model.')
   .option('-c, --controller [name]', 'Create a controller or work with route to address and existing controller.')

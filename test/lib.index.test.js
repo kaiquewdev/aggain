@@ -149,6 +149,75 @@ describe('Agni', function () {
     });
   });
 
+  it('create a model if not exists model dir or index file', function (done) {
+    agni.createModel(dir, 'test-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'models/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'models/index.js'), 'utf-8').should.be.eql(
+        '// file: models/index.js\n' +
+        'exports.test-case = require(\'./test-case\');\n'  
+      );
+      fs.existsSync(path.resolve(dir, 'models/test-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'models/test-case.js'), 'utf-8').should.be.eql(
+        '// file: models/test-case.js - created at ' + timestamp + '\n' + 
+        'function test-caseHandler() {\n' +
+        '  var mongoose = require(\'mongoose\');\n' +
+        '  var Schema = mongoose.Schema;\n' +
+        '  var schema = null;\n' +
+        '\n' +
+        '  schema = new Schema({\n' +
+        '    // start with schema here\n' +
+        '  });\n' +
+        '\n' +
+        '  return mongoose.model(\'test-case\', schema);\n' +
+        '}\n' +
+        'module.exports = exports = test-caseHandler();\n' 
+      );
+      done();
+    });
+  });
+
+  it('fail to create model file on the structure', function (done) {
+    agni.createModel(dir, 'test-case', function (err, timestamp) {
+      err.should.be.eql('Impossible to create the file on that structure, verify the models/ directory.'); 
+      should.exist(timestamp);
+      done();
+    });
+  });
+
+  it('create a model if exists model dir or index file', function (done) {
+    agni.createModel(dir, 'test-another-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'models/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'models/index.js'), 'utf-8').should.be.eql(
+        '// file: models/index.js\n' +
+        'exports.test-case = require(\'./test-case\');\n' + 
+        'exports.test-another-case = require(\'./test-another-case\');\n'
+      );
+      fs.existsSync(path.resolve(dir, 'models/test-another-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'models/test-another-case.js'), 'utf-8').should.be.eql(
+        '// file: models/test-another-case.js - created at ' + timestamp + '\n' + 
+        'function test-another-caseHandler() {\n' +
+        '  var mongoose = require(\'mongoose\');\n' +
+        '  var Schema = mongoose.Schema;\n' +
+        '  var schema = null;\n' +
+        '\n' +
+        '  schema = new Schema({\n' +
+        '    // start with schema here\n' +
+        '  });\n' +
+        '\n' +
+        '  return mongoose.model(\'test-another-case\', schema);\n' +
+        '}\n' +
+        'module.exports = exports = test-another-caseHandler();\n'
+      );
+      done();
+    });
+  });
+
   after(function () {
     exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
     exec('rm -rf ' + dir + '/*', console.log.bind(console));

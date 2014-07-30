@@ -328,6 +328,71 @@ describe('Agni', function () {
     });
   });
 
+  it('create a config if not exists config dir or index file', function (done) {
+    agni.createConfig(dir, 'test-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'configs/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'configs/index.js'), 'utf-8').should.be.eql(
+        '// file: configs/index.js\n' +
+        'var env = process.env.NODE_ENV || \'development\';\n' +
+        'exports.test-case = require(\'./test-case\')(env);\n'  
+      );
+      fs.existsSync(path.resolve(dir, 'configs/test-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'configs/test-case.js'), 'utf-8').should.be.eql(
+        '// file: configs/test-case.js - created at ' + timestamp + '\n' + 
+        'function test-caseHandler(env) {\n' +
+        '  var config = {\n' +
+        '    development: {},\n' +
+        '    production: {},\n' +
+        '  };\n' +
+        '\n' +
+        '  return config[env];\n' +
+        '}\n' +
+        'module.exports = exports = test-caseHandler;\n' 
+      );
+      done();
+    });
+  });
+
+  it('fail to create config file on the structure', function (done) {
+    agni.createConfig(dir, 'test-case', function (err, timestamp) {
+      err.should.be.eql('Impossible to create the file on that structure, verify the configs/ directory.'); 
+      should.exist(timestamp);
+      done();
+    });
+  });
+
+  it('create a config if exists config dir or index file', function (done) {
+    agni.createConfig(dir, 'test-another-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'configs/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'configs/index.js'), 'utf-8').should.be.eql(
+        '// file: configs/index.js\n' +
+        'var env = process.env.NODE_ENV || \'development\';\n' +
+        'exports.test-case = require(\'./test-case\')(env);\n' + 
+        'exports.test-another-case = require(\'./test-another-case\')(env);\n'
+      );
+      fs.existsSync(path.resolve(dir, 'configs/test-another-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'configs/test-another-case.js'), 'utf-8').should.be.eql(
+        '// file: configs/test-another-case.js - created at ' + timestamp + '\n' + 
+        'function test-another-caseHandler(env) {\n' +
+        '  var config = {\n' +
+        '    development: {},\n' +
+        '    production: {},\n' +
+        '  };\n' +
+        '\n' +
+        '  return config[env];\n' +
+        '}\n' +
+        'module.exports = exports = test-another-caseHandler;\n'
+      );
+      done();
+    });
+  });
+
   after(function () {
     exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
     exec('rm -rf ' + dir + '/*', console.log.bind(console));

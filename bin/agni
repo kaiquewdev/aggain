@@ -1,23 +1,25 @@
 #!/usr/bin/env node
 var agni = require('../');
 var agniCli = require('commander');
+var chalk = require('chalk');
 var pkg = require('../package');
+var ctx = {};
 
 agniCli
   .version(pkg.version)
   .option('-u, --up', 'Fire up the agni engine, in a existing structure.')
   .option('-s, --start [name]', 'Start up the agni engine, for the first time.')
   .option('-m, --module [name]', 'Create an module file.')
-  .option('-md, --middleware [name]', 'Create an express middleware file or works with route command to address existing middlewares to and route.')
-  .option('-r, --route [uri] [method] [name] [middlewares] [controller] [view] or [rest]', 'Create route file with supply options.')
-  .option('-u, --uri [path]', 'Work with route command to put a route in a method.')
-  .option('-mt, --method [name]', 'Work with route command to put an method on route.')
-  .option('-mm, --model [name]', 'Create a model file to work with schema, modules or plugins.')
+  .option('-d, --middleware [name]', 'Create an express middleware file or works with route command to address existing middlewares to and route.')
+  .option('-l, --model [name]', 'Create a model file to work with schema, modules or plugins.')
   .option('-p, --plugin [name]', 'Create a plugin file to work with model.')
   .option('-c, --controller [name]', 'Create a controller or work with route to address and existing controller.')
-  .option('-cf, --configuration [name]', 'Create a configuration file.')
-  .option('-b, --bin [name]', 'Create an executable file.')
-  .option('-d, --doc [name]', 'Create an doc file.')
+  .option('-s, --configuration [name]', 'Create a configuration file.')
+  //.option('-r, --route [uri] [method] [name] [middlewares] [controller] [view] or [rest]', 'Create route file with supply options.')
+  //.option('-u, --uri [path]', 'Work with route command to put a route in a method.')
+  //.option('-mt, --method [name]', 'Work with route command to put an method on route.')
+  //.option('-b, --bin [name]', 'Create an executable file.')
+  //.option('-d, --doc [name]', 'Create an doc file.')
   //.option('-v, --view [name]', 'Create a view or work with route command to address to a controller rendering trigger.')
   //.option('-dm, --doc-man [name]', 'Create an manual file.')
   //.option('-ci, --continuous-integration', 'Create a continuos integration configuration file.')
@@ -28,8 +30,54 @@ agniCli
   //.option('-cn, --container [name]', 'Create a container file for docker.')
   .parse(process.argv);
 
-// start of triggers area
-// -------
-// body:todo
-// -------
-// end of triggers area
+if (!process.argv.slice(2).length) {
+  agniCli.help();
+}
+
+function initHandler(err) {
+  var self = this;
+
+  if (err) {
+    console.log(err);
+  } else if (self.type === 'up') {
+    console.log('Fire up this application!');
+  } else if (self.type === 'start') {
+    console.log('Application ' + self.name + ' was created!');
+  }
+}
+
+function createHandler(err, timestamp) {
+  var self = this;
+
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(chalk.green('[ ' + timestamp + ' ]') + ' - ' + self.type + ' ' + self.name + ' was created!'); 
+  }
+}
+
+if (agniCli.up) {
+  ctx = { type: 'up' };
+  agni.up(process.cwd(), initHandler.bind(ctx));
+} if (agniCli.start) {
+  ctx = { name: agniCli.start || agniCli.s, type: 'start' };
+  agni.start(process.cwd(), ctx.name, initHandler.bind(ctx));
+} if ((agniCli.module) && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.module), type: 'module' };
+  agni.createModule(process.cwd(), ctx.name, createHandler.bind(ctx));
+} if ((agniCli.middleware) && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.middleware), type: 'middleware' };
+  agni.createMiddleware(process.cwd(), ctx.name, createHandler.bind(ctx));
+} if ((agniCli.model) && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.model), type: 'model' };
+  agni.createModel(process.cwd(), ctx.name, createHandler.bind(ctx));
+} if ((agniCli.plugin) && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.plugin), type: 'plugin' };
+  agni.createPlugin(process.cwd(), ctx.name, createHandler.bind(ctx));
+} if ((agniCli.controller) && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.controller), type: 'controller' };
+  agni.createController(process.cwd(), ctx.name, createHandler.bind(ctx));
+} if ((agniCli.config) && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.config), type: 'config' };
+  agni.createConfig(process.cwd(), ctx.name, createHandler.bind(ctx));
+}

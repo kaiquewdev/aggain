@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/fth-ship/agni",
   "dependencies": {
+    "chalk": "^0.5.1",
     "commander": "^2.3.0",
     "graceful-fs": "^3.0.2",
     "moment": "^2.7.0",

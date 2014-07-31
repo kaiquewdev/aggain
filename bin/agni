@@ -42,7 +42,7 @@ if (!process.argv.slice(2).length) {
 
 function bannerHandler() {
   console.log();
-  console.log(bannerData);
+  console.log(chalk.yellow(bannerData));
   console.log();
 }
 

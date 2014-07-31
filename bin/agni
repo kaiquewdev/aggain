@@ -56,28 +56,34 @@ function createHandler(err, timestamp) {
   }
 }
 
+function errorHandler() {
+  console.log('Oops, try again!');
+}
+
 if (agniCli.up) {
   ctx = { type: 'up' };
   agni.up(process.cwd(), initHandler.bind(ctx));
-} if (agniCli.start) {
+} if (typeof agniCli.start === 'string') {
   ctx = { name: agniCli.start || agniCli.s, type: 'start' };
   agni.start(process.cwd(), ctx.name, initHandler.bind(ctx));
-} if ((agniCli.module) && agni.hasDotAgni(process.cwd())) {
+} if ((typeof agniCli.module === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.module), type: 'module' };
   agni.createModule(process.cwd(), ctx.name, createHandler.bind(ctx));
-} if ((agniCli.middleware) && agni.hasDotAgni(process.cwd())) {
+} if ((typeof agniCli.middleware === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.middleware), type: 'middleware' };
   agni.createMiddleware(process.cwd(), ctx.name, createHandler.bind(ctx));
-} if ((agniCli.model) && agni.hasDotAgni(process.cwd())) {
+} if ((typeof agniCli.model === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.model), type: 'model' };
   agni.createModel(process.cwd(), ctx.name, createHandler.bind(ctx));
-} if ((agniCli.plugin) && agni.hasDotAgni(process.cwd())) {
+} if ((typeof agniCli.plugin === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.plugin), type: 'plugin' };
   agni.createPlugin(process.cwd(), ctx.name, createHandler.bind(ctx));
-} if ((agniCli.controller) && agni.hasDotAgni(process.cwd())) {
+} if ((typeof agniCli.controller === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.controller), type: 'controller' };
   agni.createController(process.cwd(), ctx.name, createHandler.bind(ctx));
-} if ((agniCli.config) && agni.hasDotAgni(process.cwd())) {
+} if ((typeof agniCli.config === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.config), type: 'config' };
   agni.createConfig(process.cwd(), ctx.name, createHandler.bind(ctx));
+} else {
+  errorHandler();
 }

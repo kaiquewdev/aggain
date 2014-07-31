@@ -27,7 +27,7 @@
     "graceful-fs": "^3.0.2",
     "moment": "^2.7.0",
     "mustache": "^0.8.2",
-    "debug": "^1.0.4",
+    "debug": "^1.0.4"
   },
   "devDependencies": {
     "should": "^4.0.4"

@@ -35,9 +35,8 @@ agniCli
   //.option('-cn, --container [name]', 'Create a container file for docker.')
   .parse(process.argv);
 
-bannerHandler();
-
 if (!process.argv.slice(2).length) {
+  bannerHandler();
   agniCli.help();
 }
 
@@ -74,12 +73,10 @@ function errorHandler(msg) {
   process.exit(1);
 }
 
-if (!agni.hasDotAgni(process.cwd())) {
-  errorHandler('You need to create .agni, to perform this action use ' + chalk.green('`agni-gen -u or agni-gen --start [name]`'));
-} if (agniCli.up) {
+if (agniCli.up && !agni.hasDotAgni(process.cwd())) {
   ctx = { type: 'up' };
   agni.up(process.cwd(), initHandler.bind(ctx));
-} if (typeof agniCli.start === 'string') {
+} if ((typeof agniCli.start === 'string') && !agni.hasDotAgni(process.cwd())) {
   ctx = { name: agniCli.start || agniCli.s, type: 'start' };
   agni.start(process.cwd(), ctx.name, initHandler.bind(ctx));
 } if ((typeof agniCli.module === 'string') && agni.hasDotAgni(process.cwd())) {
@@ -97,7 +94,21 @@ if (!agni.hasDotAgni(process.cwd())) {
 } if ((typeof agniCli.controller === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.controller), type: 'controller' };
   agni.createController(process.cwd(), ctx.name, createHandler.bind(ctx));
-} if ((typeof agniCli.config === 'string') && agni.hasDotAgni(process.cwd())) {
-  ctx = { name: (agniCli.config), type: 'config' };
+} if ((typeof agniCli.configguration === 'string') && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.configuration), type: 'config' };
   agni.createConfig(process.cwd(), ctx.name, createHandler.bind(ctx));
+} else if (agniCli.start && !(typeof agniCli.start === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('application') + ' when you try to start one. Try: ' + chalk.green('\`agni-gen --start [name]\`'));
+} else if (agniCli.module && !(typeof agniCli.module === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('module') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --module [name]\`'));
+} else if (agniCli.middleware && !(typeof agniCli.middleware === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('middleware') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --middleware [name]\`'));
+} else if (agniCli.model && !(typeof agniCli.model === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('model') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --model [name]\`'));
+} else if (agniCli.plugin && !(typeof agniCli.plugin === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('plugin') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --plugin [name]\`'));
+} else if (agniCli.controller && !(typeof agniCli.controller === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('controller') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --controller [name]\`'));
+} else if (agniCli.configuration && !(typeof agniCli.configuration === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('configuration') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --configuration [name]\`'));
 }

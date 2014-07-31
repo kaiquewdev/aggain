@@ -24,10 +24,11 @@
   "dependencies": {
     "chalk": "^0.5.1",
     "commander": "^2.3.0",
+    "debug": "^1.0.4",
     "graceful-fs": "^3.0.2",
     "moment": "^2.7.0",
     "mustache": "^0.8.2",
-    "debug": "^1.0.4"
+    "sudo-block": "^0.4.0"
   },
   "devDependencies": {
     "should": "^4.0.4"

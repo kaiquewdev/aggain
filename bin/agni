@@ -1,9 +1,14 @@
 #!/usr/bin/env node
+var sudoBlock = require('sudo-block')('You not be able to perform this tool as root.');
 var agni = require('../');
 var agniCli = require('commander');
 var chalk = require('chalk');
 var pkg = require('../package');
+var fs = require('fs');
+var path = require('path');
 var ctx = {};
+var bannerLocation = path.resolve(__dirname, 'banner.txt');
+var bannerData = fs.readFileSync(bannerLocation, 'utf-8');
 
 agniCli
   .version(pkg.version)
@@ -30,8 +35,16 @@ agniCli
   //.option('-cn, --container [name]', 'Create a container file for docker.')
   .parse(process.argv);
 
+bannerHandler();
+
 if (!process.argv.slice(2).length) {
   agniCli.help();
+}
+
+function bannerHandler() {
+  console.log();
+  console.log(bannerData);
+  console.log();
 }
 
 function initHandler(err) {
@@ -56,11 +69,14 @@ function createHandler(err, timestamp) {
   }
 }
 
-function errorHandler() {
-  console.log('Oops, try again!');
+function errorHandler(msg) {
+  console.log(msg);
+  process.exit(1);
 }
 
-if (agniCli.up) {
+if (!agni.hasDotAgni(process.cwd())) {
+  errorHandler('You need to create .agni, to perform this action use ' + chalk.green('`agni-gen -u or agni-gen --start [name]`'));
+} if (agniCli.up) {
   ctx = { type: 'up' };
   agni.up(process.cwd(), initHandler.bind(ctx));
 } if (typeof agniCli.start === 'string') {
@@ -84,6 +100,4 @@ if (agniCli.up) {
 } if ((typeof agniCli.config === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.config), type: 'config' };
   agni.createConfig(process.cwd(), ctx.name, createHandler.bind(ctx));
-} else {
-  errorHandler();
 }

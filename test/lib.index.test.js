@@ -393,6 +393,31 @@ describe('Agni', function () {
     });
   });
 
+  it('should be transform label into a valid pattern', function (done) {
+    agni.format('variable', 'test-case').should.be.eql('testCase');
+    agni.format('variable', 'test_case').should.be.eql('testCase');
+    agni.format('method', 'test-case').should.be.eql('testCaseHandler');
+    agni.format('method', 'test_case').should.be.eql('testCaseHandler');
+    agni.format('class', 'person').should.be.eql('Person');
+    agni.format('class', 'test_case-class').should.be.eql('TestCaseClass');
+    done();
+  });
+
+  it('should be validate a label with dash', function (done) {
+    agni.validate('label', 'test-case').should.be.ok;
+    done();
+  });
+
+  it('should be validate a label with camel case pattern', function (done) {
+    agni.validate('label', 'testCase').should.be.not.ok;
+    done();
+  });
+
+  it('should not be validate a label with space', function (done) {
+    agni.validate('label', 'test case').should.be.not.ok;
+    done();
+  });
+
   after(function () {
     exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
     exec('rm -rf ' + dir + '/*', console.log.bind(console));

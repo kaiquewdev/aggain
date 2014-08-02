@@ -64,7 +64,7 @@ Each part was a functional component of the application, but each one of them ha
 ### Config
 
   ```
-  [sudo] agni-gen --config [name]
+  [sudo] agni-gen --configuration [name]
   ```
 
 ## Contribute

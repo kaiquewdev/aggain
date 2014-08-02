@@ -56,10 +56,10 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'modules/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'modules/test-case.js'), 'utf-8').should.be.eql(
         '// file: modules/test-case.js - created at ' + timestamp + '\n' + 
-        'function test-caseHandler() {\n' +
+        'function testCaseHandler() {\n' +
         '  // start here with test-case.js\n' + 
         '}\n' +
-        'module.exports = exports = test-caseHandler;\n' 
+        'module.exports = exports = testCaseHandler;\n' 
       );
       done();
     });
@@ -87,10 +87,10 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'modules/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'modules/test-another-case.js'), 'utf-8').should.be.eql(
         '// file: modules/test-another-case.js - created at ' + timestamp + '\n' + 
-        'function test-another-caseHandler() {\n' +
+        'function testAnotherCaseHandler() {\n' +
         '  // start here with test-another-case.js\n' + 
         '}\n' +
-        'module.exports = exports = test-another-caseHandler;\n' 
+        'module.exports = exports = testAnotherCaseHandler;\n' 
       );
       done();
     });
@@ -109,10 +109,10 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'middlewares/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'middlewares/test-case.js'), 'utf-8').should.be.eql(
         '// file: middlewares/test-case.js - created at ' + timestamp + '\n' + 
-        'function test-caseHandler(req, res, next) {\n' +
+        'function testCaseHandler(req, res, next) {\n' +
         '  // start here with test-case.js\n' + 
         '}\n' +
-        'module.exports = exports = test-caseHandler;\n' 
+        'module.exports = exports = testCaseHandler;\n' 
       );
       done();
     });
@@ -140,10 +140,10 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'middlewares/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'middlewares/test-another-case.js'), 'utf-8').should.be.eql(
         '// file: middlewares/test-another-case.js - created at ' + timestamp + '\n' + 
-        'function test-another-caseHandler(req, res, next) {\n' +
+        'function testAnotherCaseHandler(req, res, next) {\n' +
         '  // start here with test-another-case.js\n' + 
         '}\n' +
-        'module.exports = exports = test-another-caseHandler;\n' 
+        'module.exports = exports = testAnotherCaseHandler;\n' 
       );
       done();
     });
@@ -162,7 +162,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'models/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/test-case.js'), 'utf-8').should.be.eql(
         '// file: models/test-case.js - created at ' + timestamp + '\n' + 
-        'function test-caseHandler() {\n' +
+        'function testCaseHandler() {\n' +
         '  var mongoose = require(\'mongoose\');\n' +
         '  var Schema = mongoose.Schema;\n' +
         '  var schema = null;\n' +
@@ -171,9 +171,9 @@ describe('Agni', function () {
         '    // start with schema here\n' +
         '  });\n' +
         '\n' +
-        '  return mongoose.model(\'test-case\', schema);\n' +
+        '  return mongoose.model(\'TestCase\', schema);\n' +
         '}\n' +
-        'module.exports = exports = test-caseHandler();\n' 
+        'module.exports = exports = testCaseHandler();\n' 
       );
       done();
     });
@@ -201,7 +201,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'models/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/test-another-case.js'), 'utf-8').should.be.eql(
         '// file: models/test-another-case.js - created at ' + timestamp + '\n' + 
-        'function test-another-caseHandler() {\n' +
+        'function testAnotherCaseHandler() {\n' +
         '  var mongoose = require(\'mongoose\');\n' +
         '  var Schema = mongoose.Schema;\n' +
         '  var schema = null;\n' +
@@ -210,9 +210,9 @@ describe('Agni', function () {
         '    // start with schema here\n' +
         '  });\n' +
         '\n' +
-        '  return mongoose.model(\'test-another-case\', schema);\n' +
+        '  return mongoose.model(\'TestAnotherCase\', schema);\n' +
         '}\n' +
-        'module.exports = exports = test-another-caseHandler();\n'
+        'module.exports = exports = testAnotherCaseHandler();\n'
       );
       done();
     });
@@ -231,12 +231,12 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'plugins/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'plugins/test-case.js'), 'utf-8').should.be.eql(
         '// file: plugins/test-case.js - created at ' + timestamp + '\n' + 
-        'function test-caseHandler(schema, options) {\n' +
+        'function testCaseHandler(schema, options) {\n' +
         '  options = options || {};\n' +
         '\n' +
         '  // start with plugin here\n' +
         '}\n' +
-        'module.exports = exports = test-caseHandler;\n' 
+        'module.exports = exports = testCaseHandler;\n' 
       );
       done();
     });
@@ -264,12 +264,12 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'plugins/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'plugins/test-another-case.js'), 'utf-8').should.be.eql(
         '// file: plugins/test-another-case.js - created at ' + timestamp + '\n' + 
-        'function test-another-caseHandler(schema, options) {\n' +
+        'function testAnotherCaseHandler(schema, options) {\n' +
         '  options = options || {};\n' +
         '\n' +
         '  // start with plugin here\n' +
         '}\n' +
-        'module.exports = exports = test-another-caseHandler;\n'
+        'module.exports = exports = testAnotherCaseHandler;\n'
       );
       done();
     });
@@ -288,10 +288,10 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'controllers/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'controllers/test-case.js'), 'utf-8').should.be.eql(
         '// file: controllers/test-case.js - created at ' + timestamp + '\n' + 
-        'function test-caseHandler(req, res) {\n' +
+        'function testCaseHandler(req, res) {\n' +
         '  res.send(\'test-case\');\n' +
         '}\n' +
-        'module.exports = exports = test-caseHandler;\n' 
+        'module.exports = exports = testCaseHandler;\n' 
       );
       done();
     });
@@ -319,10 +319,10 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'controllers/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'controllers/test-another-case.js'), 'utf-8').should.be.eql(
         '// file: controllers/test-another-case.js - created at ' + timestamp + '\n' + 
-        'function test-another-caseHandler(req, res) {\n' +
+        'function testAnotherCaseHandler(req, res) {\n' +
         '  res.send(\'test-another-case\');\n' +
         '}\n' +
-        'module.exports = exports = test-another-caseHandler;\n'
+        'module.exports = exports = testAnotherCaseHandler;\n'
       );
       done();
     });
@@ -342,7 +342,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'configs/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'configs/test-case.js'), 'utf-8').should.be.eql(
         '// file: configs/test-case.js - created at ' + timestamp + '\n' + 
-        'function test-caseHandler(env) {\n' +
+        'function testCaseHandler(env) {\n' +
         '  var config = {\n' +
         '    development: {},\n' +
         '    production: {},\n' +
@@ -350,7 +350,7 @@ describe('Agni', function () {
         '\n' +
         '  return config[env];\n' +
         '}\n' +
-        'module.exports = exports = test-caseHandler;\n' 
+        'module.exports = exports = testCaseHandler;\n' 
       );
       done();
     });
@@ -379,7 +379,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'configs/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'configs/test-another-case.js'), 'utf-8').should.be.eql(
         '// file: configs/test-another-case.js - created at ' + timestamp + '\n' + 
-        'function test-another-caseHandler(env) {\n' +
+        'function testAnotherCaseHandler(env) {\n' +
         '  var config = {\n' +
         '    development: {},\n' +
         '    production: {},\n' +
@@ -387,7 +387,7 @@ describe('Agni', function () {
         '\n' +
         '  return config[env];\n' +
         '}\n' +
-        'module.exports = exports = test-another-caseHandler;\n'
+        'module.exports = exports = testAnotherCaseHandler;\n'
       );
       done();
     });

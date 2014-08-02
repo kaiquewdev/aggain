@@ -19,7 +19,7 @@ agniCli
   .option('-l, --model [name]', 'Create a model file to work with schema, modules or plugins.')
   .option('-p, --plugin [name]', 'Create a plugin file to work with model.')
   .option('-c, --controller [name]', 'Create a controller or work with route to address and existing controller.')
-  .option('-s, --configuration [name]', 'Create a configuration file.')
+  .option('-f, --configuration [name]', 'Create a configuration file.')
   //.option('-r, --route [uri] [method] [name] [middlewares] [controller] [view] or [rest]', 'Create route file with supply options.')
   //.option('-u, --uri [path]', 'Work with route command to put a route in a method.')
   //.option('-mt, --method [name]', 'Work with route command to put an method on route.')
@@ -94,7 +94,7 @@ if (agniCli.up && !agni.hasDotAgni(process.cwd())) {
 } if ((typeof agniCli.controller === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.controller), type: 'controller' };
   agni.createController(process.cwd(), ctx.name, createHandler.bind(ctx));
-} if ((typeof agniCli.configguration === 'string') && agni.hasDotAgni(process.cwd())) {
+} if ((typeof agniCli.configuration === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.configuration), type: 'config' };
   agni.createConfig(process.cwd(), ctx.name, createHandler.bind(ctx));
 } else if (agniCli.start && !(typeof agniCli.start === 'string')) {

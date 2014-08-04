@@ -182,7 +182,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'models/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/index.js'), 'utf-8').should.be.eql(
         '// file: models/index.js\n' +
-        'exports.testCase = require(\'./test-case\');\n'  
+        'exports.TestCase = require(\'./test-case\');\n'  
       );
       fs.existsSync(path.resolve(dir, 'models/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/test-case.js'), 'utf-8').should.be.eql(
@@ -220,8 +220,8 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'models/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/index.js'), 'utf-8').should.be.eql(
         '// file: models/index.js\n' +
-        'exports.testCase = require(\'./test-case\');\n' + 
-        'exports.testAnotherCase = require(\'./test-another-case\');\n'
+        'exports.TestCase = require(\'./test-case\');\n' + 
+        'exports.TestAnotherCase = require(\'./test-another-case\');\n'
       );
       fs.existsSync(path.resolve(dir, 'models/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/test-another-case.js'), 'utf-8').should.be.eql(

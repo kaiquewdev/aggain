@@ -76,7 +76,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'modules/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'modules/index.js'), 'utf-8').should.be.eql(
         '// file: modules/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n'  
+        'exports.testCase = require(\'./test-case\');\n'  
       );
       fs.existsSync(path.resolve(dir, 'modules/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'modules/test-case.js'), 'utf-8').should.be.eql(
@@ -106,8 +106,8 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'modules/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'modules/index.js'), 'utf-8').should.be.eql(
         '// file: modules/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n' + 
-        'exports.test-another-case = require(\'./test-another-case\');\n'
+        'exports.testCase = require(\'./test-case\');\n' + 
+        'exports.testAnotherCase = require(\'./test-another-case\');\n'
       );
       fs.existsSync(path.resolve(dir, 'modules/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'modules/test-another-case.js'), 'utf-8').should.be.eql(
@@ -129,7 +129,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'middlewares/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'middlewares/index.js'), 'utf-8').should.be.eql(
         '// file: middlewares/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n'  
+        'exports.testCase = require(\'./test-case\');\n'  
       );
       fs.existsSync(path.resolve(dir, 'middlewares/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'middlewares/test-case.js'), 'utf-8').should.be.eql(
@@ -159,8 +159,8 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'middlewares/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'middlewares/index.js'), 'utf-8').should.be.eql(
         '// file: middlewares/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n' + 
-        'exports.test-another-case = require(\'./test-another-case\');\n'
+        'exports.testCase = require(\'./test-case\');\n' + 
+        'exports.testAnotherCase = require(\'./test-another-case\');\n'
       );
       fs.existsSync(path.resolve(dir, 'middlewares/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'middlewares/test-another-case.js'), 'utf-8').should.be.eql(
@@ -182,7 +182,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'models/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/index.js'), 'utf-8').should.be.eql(
         '// file: models/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n'  
+        'exports.testCase = require(\'./test-case\');\n'  
       );
       fs.existsSync(path.resolve(dir, 'models/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/test-case.js'), 'utf-8').should.be.eql(
@@ -220,8 +220,8 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'models/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/index.js'), 'utf-8').should.be.eql(
         '// file: models/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n' + 
-        'exports.test-another-case = require(\'./test-another-case\');\n'
+        'exports.testCase = require(\'./test-case\');\n' + 
+        'exports.testAnotherCase = require(\'./test-another-case\');\n'
       );
       fs.existsSync(path.resolve(dir, 'models/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'models/test-another-case.js'), 'utf-8').should.be.eql(
@@ -251,7 +251,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'plugins/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'plugins/index.js'), 'utf-8').should.be.eql(
         '// file: plugins/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n'  
+        'exports.testCase = require(\'./test-case\');\n'  
       );
       fs.existsSync(path.resolve(dir, 'plugins/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'plugins/test-case.js'), 'utf-8').should.be.eql(
@@ -283,8 +283,8 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'plugins/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'plugins/index.js'), 'utf-8').should.be.eql(
         '// file: plugins/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n' + 
-        'exports.test-another-case = require(\'./test-another-case\');\n'
+        'exports.testCase = require(\'./test-case\');\n' + 
+        'exports.testAnotherCase = require(\'./test-another-case\');\n'
       );
       fs.existsSync(path.resolve(dir, 'plugins/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'plugins/test-another-case.js'), 'utf-8').should.be.eql(
@@ -308,7 +308,7 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'controllers/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'controllers/index.js'), 'utf-8').should.be.eql(
         '// file: controllers/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n'  
+        'exports.testCase = require(\'./test-case\');\n'  
       );
       fs.existsSync(path.resolve(dir, 'controllers/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'controllers/test-case.js'), 'utf-8').should.be.eql(
@@ -338,8 +338,8 @@ describe('Agni', function () {
       fs.existsSync(path.resolve(dir, 'controllers/index.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'controllers/index.js'), 'utf-8').should.be.eql(
         '// file: controllers/index.js\n' +
-        'exports.test-case = require(\'./test-case\');\n' + 
-        'exports.test-another-case = require(\'./test-another-case\');\n'
+        'exports.testCase = require(\'./test-case\');\n' + 
+        'exports.testAnotherCase = require(\'./test-another-case\');\n'
       );
       fs.existsSync(path.resolve(dir, 'controllers/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'controllers/test-another-case.js'), 'utf-8').should.be.eql(
@@ -362,7 +362,7 @@ describe('Agni', function () {
       fs.readFileSync(path.resolve(dir, 'configs/index.js'), 'utf-8').should.be.eql(
         '// file: configs/index.js\n' +
         'var env = process.env.NODE_ENV || \'development\';\n' +
-        'exports.test-case = require(\'./test-case\')(env);\n'  
+        'exports.testCase = require(\'./test-case\')(env);\n'  
       );
       fs.existsSync(path.resolve(dir, 'configs/test-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'configs/test-case.js'), 'utf-8').should.be.eql(
@@ -398,8 +398,8 @@ describe('Agni', function () {
       fs.readFileSync(path.resolve(dir, 'configs/index.js'), 'utf-8').should.be.eql(
         '// file: configs/index.js\n' +
         'var env = process.env.NODE_ENV || \'development\';\n' +
-        'exports.test-case = require(\'./test-case\')(env);\n' + 
-        'exports.test-another-case = require(\'./test-another-case\')(env);\n'
+        'exports.testCase = require(\'./test-case\')(env);\n' + 
+        'exports.testAnotherCase = require(\'./test-another-case\')(env);\n'
       );
       fs.existsSync(path.resolve(dir, 'configs/test-another-case.js')).should.be.ok;
       fs.readFileSync(path.resolve(dir, 'configs/test-another-case.js'), 'utf-8').should.be.eql(

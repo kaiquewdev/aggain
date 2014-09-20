@@ -418,6 +418,61 @@ describe('Agni', function () {
     });
   });
 
+  it('create a test if not exists test dir or index file', function (done) {
+    agni.createTest(dir, 'test-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'tests/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'tests/index.js'), 'utf-8').should.be.eql(
+        '// file: tests/index.js\n' +
+        'exports.testCase = require(\'./test-case.test\');\n'  
+      );
+      fs.existsSync(path.resolve(dir, 'tests/test-case.test.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'tests/test-case.test.js'), 'utf-8').should.be.eql(
+        '// file: tests/test-case.test.js - created at ' + timestamp + '\n' + 
+        'var should = require(\'should\');\n' +
+        '\n' +
+        'describe(\'testCase\', function () {\n' +
+        '  it(\'\', function () {});\n' +
+        '});\n'
+      );
+      done();
+    });
+  });
+
+  it('fail to create test file on the structure', function (done) {
+    agni.createTest(dir, 'test-case', function (err, timestamp) {
+      err.should.be.eql('Impossible to create the file on that structure, verify the tests/ directory.'); 
+      should.exist(timestamp);
+      done();
+    });
+  });
+
+  it('create a test if exists test dir or index file', function (done) {
+    agni.createTest(dir, 'test-another-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'tests/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'tests/index.js'), 'utf-8').should.be.eql(
+        '// file: tests/index.js\n' +
+        'exports.testCase = require(\'./test-case.test\');\n' + 
+        'exports.testAnotherCase = require(\'./test-another-case.test\');\n'
+      );
+      fs.existsSync(path.resolve(dir, 'tests/test-another-case.test.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'tests/test-another-case.test.js'), 'utf-8').should.be.eql(
+        '// file: tests/test-another-case.test.js - created at ' + timestamp + '\n' + 
+        'var should = require(\'should\');\n' +
+        '\n' +
+        'describe(\'testAnotherCase\', function () {\n' +
+        '  it(\'\', function () {});\n' +
+        '});\n'
+      );
+      done();
+    });
+  });
+
   after(function () {
     exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
     exec('rm -rf ' + dir + '/*', console.log.bind(console));

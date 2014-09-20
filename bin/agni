@@ -20,6 +20,7 @@ agniCli
   .option('-p, --plugin [name]', 'Create a plugin file to work with model.')
   .option('-c, --controller [name]', 'Create a controller or work with route to address and existing controller.')
   .option('-f, --configuration [name]', 'Create a configuration file.')
+  .option('-t, --test [name]', 'Create a test file.')
   //.option('-r, --route [uri] [method] [name] [middlewares] [controller] [view] or [rest]', 'Create route file with supply options.')
   //.option('-u, --uri [path]', 'Work with route command to put a route in a method.')
   //.option('-mt, --method [name]', 'Work with route command to put an method on route.')
@@ -97,6 +98,9 @@ if (agniCli.up && !agni.hasDotAgni(process.cwd())) {
 } if ((typeof agniCli.configuration === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.configuration), type: 'config' };
   agni.createConfig(process.cwd(), ctx.name, createHandler.bind(ctx));
+} if ((typeof agniCli.test === 'string') && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.test), type: 'test' };
+  agni.createTest(process.cwd(), ctx.name, createHandler.bind(ctx));
 } else if (agniCli.start && !(typeof agniCli.start === 'string')) {
   errorHandler('You need to pass the name of the ' + chalk.red('application') + ' when you try to start one. Try: ' + chalk.green('\`agni-gen --start [name]\`'));
 } else if (agniCli.module && !(typeof agniCli.module === 'string')) {
@@ -111,4 +115,6 @@ if (agniCli.up && !agni.hasDotAgni(process.cwd())) {
   errorHandler('You need to pass the name of the ' + chalk.red('controller') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --controller [name]\`'));
 } else if (agniCli.configuration && !(typeof agniCli.configuration === 'string')) {
   errorHandler('You need to pass the name of the ' + chalk.red('configuration') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --configuration [name]\`'));
+} else if (agniCli.test && !(typeof agniCli.test === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('test') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --test [name]\`'));
 }

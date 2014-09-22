@@ -473,6 +473,59 @@ describe('Agni', function () {
     });
   });
 
+  it('create a job process if not exists job process dir or index file', function (done) {
+    agni.createJobProcess(dir, 'test-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'jobs/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'jobs/index.js'), 'utf-8').should.be.eql(
+        '// file: jobs/index.js\n' +
+        'exports.testCase = require(\'./test-case\');\n'  
+      );
+      fs.existsSync(path.resolve(dir, 'jobs/test-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'jobs/test-case.js'), 'utf-8').should.be.eql(
+        '// file: jobs/test-case.js - created at ' + timestamp + '\n' + 
+        'function testCase(job, done) {\n' +
+        '\n' +
+        '}\n' +
+        'module.exports = exports = testCase;\n'
+      );
+      done();
+    });
+  });
+
+  it('fail to create job process file on the structure', function (done) {
+    agni.createJobProcess(dir, 'test-case', function (err, timestamp) {
+      err.should.be.eql('Impossible to create the file on that structure, verify the jobs/ directory.'); 
+      should.exist(timestamp);
+      done();
+    });
+  });
+
+  it('create a job process if exists job dir or index file', function (done) {
+    agni.createJobProcess(dir, 'test-another-case', function (err, timestamp) {
+      should.not.exist(err); 
+      should.exist(timestamp);
+      console.log(timestamp);
+      fs.existsSync(path.resolve(dir, 'jobs/index.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'jobs/index.js'), 'utf-8').should.be.eql(
+        '// file: jobs/index.js\n' +
+        'exports.testCase = require(\'./test-case\');\n' + 
+        'exports.testAnotherCase = require(\'./test-another-case\');\n'
+      );
+      fs.existsSync(path.resolve(dir, 'jobs/test-another-case.js')).should.be.ok;
+      fs.readFileSync(path.resolve(dir, 'jobs/test-another-case.js'), 'utf-8').should.be.eql(
+        '// file: jobs/test-another-case.js - created at ' + timestamp + '\n' + 
+        'function testAnotherCase(job, done) {\n' +
+        '\n' +
+        '}\n' +
+        'module.exports = exports = testAnotherCase;\n'
+      );
+      done();
+    });
+  });
+
   after(function () {
     exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
     exec('rm -rf ' + dir + '/*', console.log.bind(console));

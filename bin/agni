@@ -21,6 +21,7 @@ agniCli
   .option('-c, --controller [name]', 'Create a controller or work with route to address and existing controller.')
   .option('-f, --configuration [name]', 'Create a configuration file.')
   .option('-t, --test [name]', 'Create a test file.')
+  .option('-j, --job [name]', 'Create a job process.')
   //.option('-r, --route [uri] [method] [name] [middlewares] [controller] [view] or [rest]', 'Create route file with supply options.')
   //.option('-u, --uri [path]', 'Work with route command to put a route in a method.')
   //.option('-mt, --method [name]', 'Work with route command to put an method on route.')
@@ -32,7 +33,7 @@ agniCli
   //.option('-t, --track [name]', 'Create a track event.')
   //.option('-l, --log-pipe [name]', 'Create a log pipe configuration.')
   //.option('-w, --web-admin [port]', 'Run a web admin application of agni.')
-  //.option('-j, --job [name]', 'Create a job file with consumer and producer.')
+
   //.option('-cn, --container [name]', 'Create a container file for docker.')
   .parse(process.argv);
 
@@ -101,6 +102,9 @@ if (agniCli.up && !agni.hasDotAgni(process.cwd())) {
 } if ((typeof agniCli.test === 'string') && agni.hasDotAgni(process.cwd())) {
   ctx = { name: (agniCli.test), type: 'test' };
   agni.createTest(process.cwd(), ctx.name, createHandler.bind(ctx));
+} if ((typeof agniCli.job === 'string') && agni.hasDotAgni(process.cwd())) {
+  ctx = { name: (agniCli.job), type: 'job' };
+  agni.createJobProcess(process.cwd(), ctx.name, createHandler.bind(ctx));
 } else if (agniCli.start && !(typeof agniCli.start === 'string')) {
   errorHandler('You need to pass the name of the ' + chalk.red('application') + ' when you try to start one. Try: ' + chalk.green('\`agni-gen --start [name]\`'));
 } else if (agniCli.module && !(typeof agniCli.module === 'string')) {
@@ -117,4 +121,6 @@ if (agniCli.up && !agni.hasDotAgni(process.cwd())) {
   errorHandler('You need to pass the name of the ' + chalk.red('configuration') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --configuration [name]\`'));
 } else if (agniCli.test && !(typeof agniCli.test === 'string')) {
   errorHandler('You need to pass the name of the ' + chalk.red('test') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --test [name]\`'));
+} else if (agniCli.job && !(typeof agniCli.job === 'string')) {
+  errorHandler('You need to pass the name of the ' + chalk.red('job') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --job [name]\`'));
 }

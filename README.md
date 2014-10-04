@@ -13,6 +13,10 @@ Let's start talk about to create something amazing and simple to deal with.
   [sudo] npm i -g agni-gen
   ```
 
+### Usage screencast in pt_BR
+
+[Screencast #1](http://youtu.be/U0BKa_ocKvI)
+
 ## Starting a clean agni project or seed the flame
 
   Fire up the engine on a living project.
@@ -21,7 +25,7 @@ Let's start talk about to create something amazing and simple to deal with.
   [sudo] agni-gen --up
   ```
 
-  Start up an structure from the group with the engine.
+  Start up an structure from the ground with the engine.
 
   ```
   [sudo] agni-gen --start [name]
@@ -65,6 +69,18 @@ Each part was a functional component of the application, but each one of them ha
 
   ```
   [sudo] agni-gen --configuration [name]
+  ```
+
+### Test 
+
+  ```
+  [sudo] agni-gen --test [name]
+  ```
+
+### Job 
+
+  ```
+  [sudo] agni-gen --job [name]
   ```
 
 ## Contribute

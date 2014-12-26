@@ -9,3 +9,5 @@ exports.createIndex = require('./create-index');
 exports.createFile = require('./create-file');
 exports.manualUpperCase = require('./manual-upper-case');
 exports.format = require('./format');
+exports.hasDotAgni = require('./has-dot-agni');
+exports.validate = require('./validate');

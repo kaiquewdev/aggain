@@ -8,3 +8,4 @@ exports.createLocation = require('./create-location');
 exports.createIndex = require('./create-index');
 exports.createFile = require('./create-file');
 exports.manualUpperCase = require('./manual-upper-case');
+exports.format = require('./format');

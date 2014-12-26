@@ -2,12 +2,13 @@
 var debug = require('debug')('agni');
 var path = require('path');
 var fs = require('fs');
+var modules = require('./');
 
 function createIndexHandler(type, dir) {
   debug('private create index handler');
   var out = false;
   var indexFileCopyLocation = path.resolve(dir, type + '/index.js');
-  var hasIndexSetup = _hasIndexSetupHandler(type, dir);
+  var hasIndexSetup = modules.hasIndexSetup(type, dir);
   var headerData = '// file: ' + type + '/index.js\n';
   var envData = 'var env = process.env.NODE_ENV || \'development\';\n';
 

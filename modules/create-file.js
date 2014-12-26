@@ -4,6 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var mustache = require('mustache');
 var moment = require('moment');
+var modules = require('./');
 
 function createFileHandler(type, dir, name, fn) {
   // start here with create-file.js
@@ -11,9 +12,9 @@ function createFileHandler(type, dir, name, fn) {
   var out = false;
   var err = null;
   var timestamp = moment().format('YYYY-MM-DD, hh:mm');
-  var varName = formatHandler('variable', name);
-  var methodName = formatHandler('method', name);
-  var className = formatHandler('class', name);
+  var varName = modules.format('variable', name);
+  var methodName = modules.format('method', name);
+  var className = modules.format('class', name);
   var indexFileCopyLocation = path.resolve(dir, type + '/index.js');
   var fileNameWithExt = type.slice(0, type.length - 1);
   var fileLocation = path.resolve(dir, '.agni/templates/' + type + '/' + fileNameWithExt + '.js');
@@ -21,7 +22,7 @@ function createFileHandler(type, dir, name, fn) {
   var file = null;
   var fileCopyData = null;
   var indexAppendData = 'exports.' + varName + ' = require(\'./' + name + '\');\n';
-  var hasFile = _hasFileHandler(type, dir, name);
+  var hasFile = modules.hasFile(type, dir, name);
 
   if (type === 'configs') {
     indexAppendData = 'exports.' + varName + ' = require(\'./' + name + '\')(env);\n';

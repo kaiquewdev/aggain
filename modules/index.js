@@ -1,0 +1,10 @@
+// file: modules/index.js
+exports.dotAgniLocation = require('./dot-agni-location');
+exports.hasStructureSetup = require('./has-structure-setup');
+exports.hasSetup = require('./has-setup');
+exports.hasIndexSetup = require('./has-index-setup');
+exports.hasFile = require('./has-file');
+exports.createLocation = require('./create-location');
+exports.createIndex = require('./create-index');
+exports.createFile = require('./create-file');
+exports.manualUpperCase = require('./manual-upper-case');

@@ -9,17 +9,17 @@ function upHandler(dir, fn) {
   debug('up handler');
   var err = null;
   var dotAgniLocation = modules.dotAgniLocation(dir);
+  var src = path.resolve(__dirname, 'templates');
+  var dest = path.resolve(dotAgniLocation, 'templates');
   
   fn = fn || function startCallbackHandler (err) {};
 
   function completeHandler(err) {
     debug('complete mkdir handler');
     debug(util.inspect(err));
-    fs.symlinkSync(
-      path.resolve(__dirname, 'templates'),
-      path.resolve(dotAgniLocation, 'templates'),
-      'dir'
-    );
+    debug('src: ' + src);
+    debug('dest: ' + dest);
+    fs.symlinkSync(src, dest, 'dir');
     fn.call(exports, err); 
   }
 

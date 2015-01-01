@@ -21,3 +21,4 @@ exports.createConfig = require('./create-config');
 exports.createTest = require('./create-test');
 exports.createJob = require('./create-job');
 exports.start = require('./start');
+exports.createApp = require('./create-app');

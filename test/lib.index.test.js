@@ -10,53 +10,6 @@ describe('Agni', function () {
   var dotAgniLocation = path.resolve(dir, '.agni');
 
   it('has dot agni location', function () {
-    agni.hasDotAgni('./test/case').should.not.be.ok;
-  });
-
-  it('should be transform label into a valid pattern', function (done) {
-    agni.format('variable', 'test-case').should.be.eql('testCase');
-    agni.format('variable', 'test_case').should.be.eql('testCase');
-    agni.format('method', 'test-case').should.be.eql('testCaseHandler');
-    agni.format('method', 'test_case').should.be.eql('testCaseHandler');
-    agni.format('class', 'person').should.be.eql('Person');
-    agni.format('class', 'test_case-class').should.be.eql('TestCaseClass');
-    done();
-  });
-
-  it('should be validate a label with dash', function (done) {
-    agni.validate('label', 'test-case').should.be.ok;
-    done();
-  });
-
-  it('should be validate a label with camel case pattern', function (done) {
-    agni.validate('label', 'testCase').should.be.not.ok;
-    done();
-  });
-
-  it('should not be validate a label with space', function (done) {
-    agni.validate('label', 'test case').should.be.not.ok;
-    done();
-  });
-
-  it('fire up the egine', function (done) {
-    agni.up('./test/case', function(err) {
-      should.not.exist(err);
-      fs.existsSync(dotAgniLocation).should.be.ok;
-      fs.existsSync(path.resolve(dotAgniLocation, 'templates')).should.be.ok;
-      done();
-    });
-  });
-
-  it('start up the structure', function (done) {
-    agni.start('./test/case', 'new-structure', function(err) {
-      should.not.exist(err);
-      fs.existsSync(path.resolve(dir, 'new-structure')).should.be.ok;
-      fs.existsSync(path.resolve(dir, 'new-structure/.agni')).should.be.ok;
-      done();
-    });
-  });
-
-  it('has dot agni location', function () {
     agni.hasDotAgni('./test/case').should.be.ok;
   });
 

@@ -406,7 +406,7 @@ it('create a test if exists test dir or index file', function (done) {
 });
 
 it('create a job process if not exists job process dir or index file', function (done) {
-  agni.createJobProcess(dir, 'test-case', function (err, timestamp) {
+  agni.createJob(dir, 'test-case', function (err, timestamp) {
     should.not.exist(err); 
     should.exist(timestamp);
     console.log(timestamp);
@@ -428,7 +428,7 @@ it('create a job process if not exists job process dir or index file', function 
 });
 
 it('fail to create job process file on the structure', function (done) {
-  agni.createJobProcess(dir, 'test-case', function (err, timestamp) {
+  agni.createJob(dir, 'test-case', function (err, timestamp) {
     err.should.be.eql('Impossible to create the file on that structure, verify the jobs/ directory.'); 
     should.exist(timestamp);
     done();
@@ -436,7 +436,7 @@ it('fail to create job process file on the structure', function (done) {
 });
 
 it('create a job process if exists job dir or index file', function (done) {
-  agni.createJobProcess(dir, 'test-another-case', function (err, timestamp) {
+  agni.createJob(dir, 'test-another-case', function (err, timestamp) {
     should.not.exist(err); 
     should.exist(timestamp);
     console.log(timestamp);
@@ -453,6 +453,61 @@ it('create a job process if exists job dir or index file', function (done) {
       '\n' +
       '}\n' +
       'module.exports = exports = testAnotherCase;\n'
+    );
+    done();
+  });
+});
+
+it('create a route if not exists route dir or index file', function (done) {
+  agni.createRoute(dir, 'test-case', function (err, timestamp) {
+    should.not.exist(err); 
+    should.exist(timestamp);
+    console.log(timestamp);
+    fs.existsSync(path.resolve(dir, 'routes/index.js')).should.be.ok;
+    fs.readFileSync(path.resolve(dir, 'routes/index.js'), 'utf-8').should.be.eql(
+      '// file: routes/index.js\n' +
+      'exports.testCase = require(\'./test-case\');\n'  
+    );
+    fs.existsSync(path.resolve(dir, 'routes/test-case.js')).should.be.ok;
+    fs.readFileSync(path.resolve(dir, 'routes/test-case.js'), 'utf-8').should.be.eql(
+      '// file: routes/test-case.js - created at ' + timestamp + '\n' + 
+      'var express = require(\'express\');\n' +
+      'var router = express.Router();\n' +
+      '\n' +
+      '\n' +
+      'module.exports = router;\n'
+    );
+    done();
+  });
+});
+
+it('fail to create route file on the structure', function (done) {
+  agni.createRoute(dir, 'test-case', function (err, timestamp) {
+    err.should.be.eql('Impossible to create the file on that structure, verify the routes/ directory.'); 
+    should.exist(timestamp);
+    done();
+  });
+});
+
+it('create a route if exists route dir or index file', function (done) {
+  agni.createRoute(dir, 'test-another-case', function (err, timestamp) {
+    should.not.exist(err); 
+    should.exist(timestamp);
+    console.log(timestamp);
+    fs.existsSync(path.resolve(dir, 'routes/index.js')).should.be.ok;
+    fs.readFileSync(path.resolve(dir, 'routes/index.js'), 'utf-8').should.be.eql(
+      '// file: routes/index.js\n' +
+      'exports.testCase = require(\'./test-case\');\n' + 
+      'exports.testAnotherCase = require(\'./test-another-case\');\n'
+    );
+    fs.existsSync(path.resolve(dir, 'routes/test-another-case.js')).should.be.ok;
+    fs.readFileSync(path.resolve(dir, 'routes/test-another-case.js'), 'utf-8').should.be.eql(
+      '// file: routes/test-another-case.js - created at ' + timestamp + '\n' + 
+      'var express = require(\'express\');\n' +
+      'var router = express.Router();\n' +
+      '\n' +
+      '\n' +
+      'module.exports = router;\n'
     );
     done();
   });

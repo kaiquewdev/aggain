@@ -16,9 +16,9 @@ function createFileHandler(type, dir, name, fn) {
   var methodName = modules.format('method', name);
   var className = modules.format('class', name);
   var fileName = type.slice(0, type.length - 1);
-  var fileLocation = path.resolve(dir, '.agni/templates/' + type + '/' + fileName + '.js');
+  var fileLocation = path.resolve(dir, '.agni/templates/' + type + '/' + fileName + (type === 'bins' ? '' : '.js'));
   var fileCopyName = (type === 'tests' ? (name + '.test') : name);
-  var fileCopyLocation = path.resolve(dir, type + '/' + fileCopyName + '.js');
+  var fileCopyLocation = path.resolve(dir, type + '/' + fileCopyName + (type === 'bins' ? '' : '.js'));
   var file = null;
   var fileCopyData = null;
   var indexFileCopyLocation = path.resolve(dir, type + '/index.js');

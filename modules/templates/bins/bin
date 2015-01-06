@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+// file: bins/{{name}} - created at {{timestamp}}
+var {{variableName}} = require('commander');
+
+{{variableName}}
+  //.version('0.0.1')
+  //.option('', '')
+  //.command('', '')
+  .parse(process.argv);

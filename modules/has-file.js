@@ -5,7 +5,9 @@ var fs = require('fs');
 
 function hasFileHandler(type, dir, name) {
   debug('private has file handler');
-  var dirFileLocation = path.resolve(dir, type + '/' + (type === 'tests' ? (name + '.test') : name ) + '.js');
+  var fileName = (type === 'tests' ? (name + '.test') : name );
+  var fileExt = (type === 'bins' ? '' : '.js');
+  var dirFileLocation = path.resolve(dir, type + '/' + fileName + fileExt);
   return fs.existsSync(dirFileLocation);
 }
 module.exports = exports = hasFileHandler;

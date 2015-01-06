@@ -24,3 +24,4 @@ exports.start = require('./start');
 exports.createApp = require('./create-app');
 exports.createRoute = require('./create-route');
 exports.copyFile = require('./copy-file');
+exports.createBin = require('./create-bin');

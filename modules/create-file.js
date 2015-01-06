@@ -15,12 +15,13 @@ function createFileHandler(type, dir, name, fn) {
   var varName = modules.format('variable', name);
   var methodName = modules.format('method', name);
   var className = modules.format('class', name);
-  var indexFileCopyLocation = path.resolve(dir, type + '/index.js');
-  var fileNameWithExt = type.slice(0, type.length - 1);
-  var fileLocation = path.resolve(dir, '.agni/templates/' + type + '/' + fileNameWithExt + '.js');
-  var fileCopyLocation = path.resolve(dir, type + '/' + (type === 'tests' ? (name + '.test') : name) + '.js');
+  var fileName = type.slice(0, type.length - 1);
+  var fileLocation = path.resolve(dir, '.agni/templates/' + type + '/' + fileName + '.js');
+  var fileCopyName = (type === 'tests' ? (name + '.test') : name);
+  var fileCopyLocation = path.resolve(dir, type + '/' + fileCopyName + '.js');
   var file = null;
   var fileCopyData = null;
+  var indexFileCopyLocation = path.resolve(dir, type + '/index.js');
   var indexAppendData = 'exports.' + varName + ' = require(\'./' + name + '\');\n';
   var hasFile = modules.hasFile(type, dir, name);
 
@@ -34,17 +35,16 @@ function createFileHandler(type, dir, name, fn) {
 
   fn = fn || function createModulesCallbackHandler (err, timestamp) {};
 
-  if (!hasFile) {
+  if (type !== 'app' && (!hasFile)) {
     fs.appendFileSync(indexFileCopyLocation, indexAppendData);
-    file = fs.readFileSync(fileLocation, 'utf-8');
-    fileCopyData = mustache.render(file, {
+  } if (!hasFile) {
+    modules.copyFile(fileLocation, fileCopyLocation, {
       name: name,
       variableName: varName,
       methodName: methodName,
       className: className,
       timestamp: timestamp
-    });
-    fs.writeFileSync(fileCopyLocation, fileCopyData);
+    }); 
     fn.call(exports, err, timestamp);
   }
 

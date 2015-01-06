@@ -22,19 +22,11 @@ agniCli
   .option('-f, --configuration [name]', 'Create a configuration file.')
   .option('-t, --test [name]', 'Create a test file.')
   .option('-j, --job [name]', 'Create a job process.')
-  .option('-r, --route [name]', 'Create a route')
-  //.option('-u, --uri [path]', 'Work with route command to put a route in a method.')
-  //.option('-mt, --method [name]', 'Work with route command to put an method on route.')
+  .option('-r, --route [name]', 'Create a route.')
+  .option('-a, --app [name]', 'Create an app.')
   //.option('-b, --bin [name]', 'Create an executable file.')
   //.option('-d, --doc [name]', 'Create an doc file.')
   //.option('-v, --view [name]', 'Create a view or work with route command to address to a controller rendering trigger.')
-  //.option('-dm, --doc-man [name]', 'Create an manual file.')
-  //.option('-ci, --continuous-integration', 'Create a continuos integration configuration file.')
-  //.option('-t, --track [name]', 'Create a track event.')
-  //.option('-l, --log-pipe [name]', 'Create a log pipe configuration.')
-  //.option('-w, --web-admin [port]', 'Run a web admin application of agni.')
-
-  //.option('-cn, --container [name]', 'Create a container file for docker.')
   .parse(process.argv);
 
 if (!process.argv.slice(2).length) {
@@ -172,6 +164,15 @@ function routeHandler() {
   }
 }
 
+function appHandler() {
+  if ((typeof agniCli.app === 'string') && agni.hasDotAgni(process.cwd())) {
+    ctx = { name: (agniCli.app), type: 'app' };
+    agni.createApp(process.cwd(), ctx.name, createHandler.bind(ctx));
+  } else if (agniCli.app && !(typeof agniCli.app === 'string')) {
+    errorHandler('You need to pass the name of the ' + chalk.red('model') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --app [name]\`'));
+  }
+}
+
 upHandler();
 startHandler();
 moduleHandler();
@@ -182,3 +183,5 @@ controllerHandler();
 configurationHandler();
 testHandler();
 jobHandler();
+routeHandler();
+appHandler();

@@ -512,3 +512,75 @@ it('create a route if exists route dir or index file', function (done) {
     done();
   });
 });
+
+it('create app file', function (done) {
+  agni.createApp(dir, 'app', function (err, timestamp) {
+    should.not.exist(err); 
+    should.exist(timestamp);
+    fs.existsSync(path.resolve(dir, './app.js')).should.be.ok;
+    fs.readFileSync(path.resolve(dir, './app.js'), 'utf-8').should.be.eql(
+      '// file: app.js - created at ' + timestamp + '\n' + 
+      'var express = require(\'express\');\n' +
+      'var path = require(\'path\');\n' +
+      'var logger = require(\'morgan\');\n' +
+      'var cookieParser = require(\'cookie-parser\');\n' +
+      'var bodyParser = require(\'body-parser\');\n' +
+      '\n' +
+      'var app = express();\n' +
+      '\n' +
+      '//var routes = require(\'./routes\');\n' +
+      '\n' +
+      'app.use(logger(\'dev\'));\n' +
+      'app.use(bodyParser.json());\n' +
+      'app.use(bodyParser.urlencoded({ extended: false }));\n' +
+      'app.use(cookieParser());\n' +
+      '\n' +
+      'if (app.get(\'env\') === \'development\') {\n' +
+      '  app.use(function (err, req, res, next) {\n' +
+      '    res.status(err.status || 500);\n' +
+      '    res.send(err);\n' +
+      '  });\n' +
+      '}\n' +
+      '\n' +
+      'app.use(function (err, req, res, next) {\n' +
+      '  res.status(err.status || 500);\n' +
+      '  res.send(err);\n' +
+      '});\n' +
+      '\n' +
+      'module.exports = app;\n'
+    );
+    done();
+  });
+});
+
+/*it('fail to create route file on the structure', function (done) {
+  agni.createRoute(dir, 'test-case', function (err, timestamp) {
+    err.should.be.eql('Impossible to create the file on that structure, verify the routes/ directory.'); 
+    should.exist(timestamp);
+    done();
+  });
+});
+
+it('create a route if exists route dir or index file', function (done) {
+  agni.createRoute(dir, 'test-another-case', function (err, timestamp) {
+    should.not.exist(err); 
+    should.exist(timestamp);
+    console.log(timestamp);
+    fs.existsSync(path.resolve(dir, 'routes/index.js')).should.be.ok;
+    fs.readFileSync(path.resolve(dir, 'routes/index.js'), 'utf-8').should.be.eql(
+      '// file: routes/index.js\n' +
+      'exports.testCase = require(\'./test-case\');\n' + 
+      'exports.testAnotherCase = require(\'./test-another-case\');\n'
+    );
+    fs.existsSync(path.resolve(dir, 'routes/test-another-case.js')).should.be.ok;
+    fs.readFileSync(path.resolve(dir, 'routes/test-another-case.js'), 'utf-8').should.be.eql(
+      '// file: routes/test-another-case.js - created at ' + timestamp + '\n' + 
+      'var express = require(\'express\');\n' +
+      'var router = express.Router();\n' +
+      '\n' +
+      '\n' +
+      'module.exports = router;\n'
+    );
+    done();
+  });
+});*/

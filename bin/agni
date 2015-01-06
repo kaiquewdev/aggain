@@ -24,7 +24,7 @@ agniCli
   .option('-j, --job [name]', 'Create a job process.')
   .option('-r, --route [name]', 'Create a route.')
   .option('-a, --app [name]', 'Create an app.')
-  //.option('-b, --bin [name]', 'Create an executable file.')
+  .option('-b, --bin [name]', 'Create an executable file.')
   //.option('-d, --doc [name]', 'Create an doc file.')
   //.option('-v, --view [name]', 'Create a view or work with route command to address to a controller rendering trigger.')
   .parse(process.argv);
@@ -173,6 +173,15 @@ function appHandler() {
   }
 }
 
+function binHandler() {
+  if ((typeof agniCli.bin === 'string') && agni.hasDotAgni(process.cwd())) {
+    ctx = { name: (agniCli.bin), type: 'bin' };
+    agni.createBin(process.cwd(), ctx.name, createHandler.bind(ctx));
+  } else if (agniCli.bin && !(typeof agniCli.bin === 'string')) {
+    errorHandler('You need to pass the name of the ' + chalk.red('model') + ' when you try to create one. Try: ' + chalk.green('\`agni-gen --bin [name]\`'));
+  }
+}
+
 upHandler();
 startHandler();
 moduleHandler();
@@ -185,3 +194,4 @@ testHandler();
 jobHandler();
 routeHandler();
 appHandler();
+binHandler();

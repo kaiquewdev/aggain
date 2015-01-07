@@ -1,4 +1,4 @@
-# Agni
+# Agni Gen
 
 ## Purpose
 
@@ -34,6 +34,24 @@ Let's start talk about to create something amazing and simple to deal with.
 ## Structure
 
 Each part was a functional component of the application, but each one of them has a organic and co-operative task.
+
+### Bin 
+
+  ```
+  [sudo] agni-gen --bin [name] 
+  ```
+
+### App 
+
+  ```
+  [sudo] agni-gen --app [name] 
+  ```
+
+### Route 
+
+  ```
+  [sudo] agni-gen --route [name] 
+  ```
 
 ### Modules
 

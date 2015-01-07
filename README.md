@@ -17,6 +17,10 @@ Let's start talk about to create something amazing and simple to deal with.
 
 [Screencast #1](http://youtu.be/U0BKa_ocKvI)
 
+### Usage
+
+[Usage](http://showterm.io/dbe04c65f296534bc4318)
+
 ## Starting a clean agni project or seed the flame
 
   Fire up the engine on a living project.

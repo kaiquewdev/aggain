@@ -1,5 +1,7 @@
 # Agni Gen
 
+[![Build Status](https://travis-ci.org/kaiquewdev/agni-gen.svg?branch=master)](https://travis-ci.org/kaiquewdev/agni-gen)
+
 ## Purpose
 
 Maybe you have the same problem, over and over to create a solid base for your applications,

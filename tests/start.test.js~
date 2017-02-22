@@ -24,15 +24,15 @@ describe('start', function () {
     });
   });
 
-  //require('./cases');
+  require('./cases');
 
   it('has dot agni location', function () {
     agni.hasDotAgni('./tests/case/new-structure').should.be.ok;
   });
 
   after(function () {
-    exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
-    exec('rm -rf ' + dir + '/*', console.log.bind(console));
-    exec('rm -rf ' + dir, console.log.bind(console));
+	  //exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
+	  //exec('rm -rf ' + dir + '/*', console.log.bind(console));
+	  //exec('rm -rf ' + dir, console.log.bind(console));
   });
 });

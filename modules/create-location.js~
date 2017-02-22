@@ -3,7 +3,6 @@ var debug = require('debug')('agni');
 var path = require('path');
 var fs = require('fs');
 var modules = require('./');
-var mkdirp = require('mkdirp');
 
 function createLocationHandler(type, dir) {
   debug('private create location handler');
@@ -12,7 +11,7 @@ function createLocationHandler(type, dir) {
   var hasSetup = modules.hasSetup(type, dir);
 
   if (!hasSetup) {
-    out = mkdirp(dirLocation);
+    out = fs.mkdirSync(dirLocation);
   }
 
   return out;

@@ -28,7 +28,7 @@ describe('up', function () {
     agni.hasDotAgni('./tests/case').should.be.ok;
   });
 
-  //require('./cases');
+  require('./cases');
 
   it('fail to create dot agni dir in an existing context with up', function (done) {
     agni.up('./tests/case', function (err) {
@@ -39,7 +39,7 @@ describe('up', function () {
   });
 
   after(function () {
-    exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
-    exec('rm -rf ' + dir + '/*', console.log.bind(console));
+	  //exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
+	  //exec('rm -rf ' + dir + '/*', console.log.bind(console));
   });
 });

@@ -5,7 +5,7 @@
   "bin": "./bin/agni",
   "main": "index.js",
   "scripts": {
-    "test": "export DEBUG=agni; export NODE_ENV=development; ./node_modules/mocha/bin/_mocha --report mocha-lcov-reporter -R spec ./tests"
+    "test": "export DEBUG=agni; export NODE_ENV=development; ./node_modules/mocha/bin/_mocha --report mocha-lcov-reporter -R spec ./tests && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",

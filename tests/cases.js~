@@ -1,6 +1,6 @@
 var should = require('should');
 
-/*it('create a module if not exists module dir or index file', function (done) {
+it('create a module if not exists module dir or index file', function (done) {
   agni.createModule(dir, 'test-case', function (err, timestamp) {
     should.not.exist(err); 
     should.exist(timestamp);
@@ -580,4 +580,4 @@ it('fail to create bin file on the structure', function (done) {
     should.exist(timestamp);
     done();
   });
-});*/
+});

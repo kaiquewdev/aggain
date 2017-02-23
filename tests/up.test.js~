@@ -15,7 +15,7 @@ describe('up', function () {
   global.dir = dir;
   global.dotAgniLocation = dotAgniLocation;
 
-  /*it('fire up the egine', function (done) {
+  it('fire up the egine', function (done) {
     agni.up('./tests/case', function(err) {
       should.not.exist(err);
       fs.existsSync(dotAgniLocation).should.be.ok;
@@ -26,11 +26,11 @@ describe('up', function () {
 
   it('has dot agni location', function () {
     agni.hasDotAgni('./tests/case').should.be.ok;
-  });*/
+  });
 
   //require('./cases');
 
-  /*it('fail to create dot agni dir in an existing context with up', function (done) {
+  it('fail to create dot agni dir in an existing context with up', function (done) {
     agni.up('./tests/case', function (err) {
       fs.existsSync(dotAgniLocation).should.be.ok;
       err.should.be.eql('.agni exists in the ' + dotAgniLocation.replace('/.agni', ''));
@@ -41,5 +41,5 @@ describe('up', function () {
   after(function () {
     exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
     exec('rm -rf ' + dir + '/*', console.log.bind(console));
-  });*/
+  });
 });

@@ -15,18 +15,18 @@ describe('start', function () {
   global.dir = dir;
   global.dotAgniLocation = dotAgniLocation;
 
-  it('start up the structure', function (done) {
+  /*it('start up the structure', function (done) {
     agni.start('./tests/case', 'new-structure', function(err) {
       should.not.exist(err);
       fs.existsSync(path.resolve(dir)).should.be.ok;
       fs.existsSync(path.resolve(dir, '.agni')).should.be.ok;
       done();
     });
-  });
+  });*/
 
   //require('./cases');
 
-  it('has dot agni location', function () {
+  /*it('has dot agni location', function () {
     agni.hasDotAgni('./tests/case/new-structure').should.be.ok;
   });
 
@@ -34,5 +34,5 @@ describe('start', function () {
     exec('rm -rf ' + dotAgniLocation, console.log.bind(console));
     exec('rm -rf ' + dir + '/*', console.log.bind(console));
     exec('rm -rf ' + dir, console.log.bind(console));
-  });
+  });*/
 });

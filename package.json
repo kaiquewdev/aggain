@@ -9,18 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:fth-ship/agni.git"
+    "url": "git@github.com:kaiquewdev/agni-gen.git"
   },
   "keywords": [
     "scaffolding",
     "generator"
   ],
-  "author": "Kaique da Silva <kaique.developer@gmail.com>",
+  "author": "Kaique da Silva <kaique.silva.dev@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fth-ship/agni/issues"
+    "url": "https://github.com/kaiquewdev/agni-gen/issues"
   },
-  "homepage": "https://github.com/fth-ship/agni",
+  "homepage": "https://github.com/kaiquewdev/agni-gen",
   "dependencies": {
     "chalk": "^0.5.1",
     "commander": "^2.3.0",

@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:kaiquewdev/agni-gen.git"
+    "url": "git@github.com:kaiquewdev/aggain.git"
   },
   "keywords": [
     "scaffolding",
@@ -18,9 +18,9 @@
   "author": "Kaique da Silva <kaique.silva.dev@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kaiquewdev/agni-gen/issues"
+    "url": "https://github.com/kaiquewdev/aggain/issues"
   },
-  "homepage": "https://github.com/kaiquewdev/agni-gen",
+  "homepage": "https://github.com/kaiquewdev/aggain",
   "dependencies": {
     "chalk": "^0.5.1",
     "commander": "^2.3.0",

@@ -1,6 +1,6 @@
 // file: tests/has-dot-agni-location.test.js - created at 2015-01-01, 08:25
 const should = require('should');
-const agni = require('../lib');
+const aggain = require('../lib');
 const path = require('path');
 
 describe('hasDotAgniLocation', () => {
@@ -10,6 +10,6 @@ describe('hasDotAgniLocation', () => {
   });
 
   it('should be has dot agni dir', () => {
-    agni.hasDotAgni('./tests/case').should.not.be.ok;
+    aggain.hasDotAgni('./tests/case').should.not.be.ok;
   });
 });

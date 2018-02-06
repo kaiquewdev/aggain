@@ -2,7 +2,6 @@
 var debug = require('debug')('agni');
 var path = require('path');
 var fs = require('fs');
-var mustache = require('mustache');
 var moment = require('moment');
 var modules = require('./');
 

@@ -8,7 +8,7 @@ function copyFileHandler(src, dst, ctx) {
   var file = fs.readFileSync(src, 'utf-8');
   var data = micro(file);
 
-  data = micro.compile(ctx);
+  data = data.compile(ctx);
 
   fs.writeFileSync(dst, data);
 

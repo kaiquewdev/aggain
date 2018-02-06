@@ -1,6 +1,6 @@
 {
   "name": "aggain",
-  "version": "0.0.11",
+  "version": "0.0.15",
   "description": "Agni is a tool to help you organize your application structure based on simple principles.",
   "bin": "./bin/agni",
   "main": "index.js",

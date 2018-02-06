@@ -1,4 +1,4 @@
-// file: tests/has-dot-agni-location.test.js - created at 2015-01-01, 08:25
+// file: tests/has-dot-aggain-location.test.js - created at 2015-01-01, 08:25
 const should = require('should');
 const aggain = require('../lib');
 const path = require('path');

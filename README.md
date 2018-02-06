@@ -1,6 +1,6 @@
-# Agni Gen
+# Aggain
 
-[![Build Status](https://travis-ci.org/kaiquewdev/agni-gen.svg?branch=master)](https://travis-ci.org/kaiquewdev/agni-gen)
+[![Build Status](https://travis-ci.org/kaiquewdev/agni-gen.svg?branch=master)](https://travis-ci.org/kaiquewdev/aggain)
 
 ## Purpose
 
@@ -12,7 +12,7 @@ Let's start talk about to create something amazing and simple to deal with.
 ## Installation
 
   ```
-  [sudo] npm i -g agni-gen
+  [sudo] npm i -g aggain
   ```
 
 ### Usage screencast in pt_BR
@@ -28,13 +28,13 @@ Let's start talk about to create something amazing and simple to deal with.
   Fire up the engine on a living project.
 
   ```
-  [sudo] agni-gen --up
+  [sudo] aggain --up
   ```
 
   Start up an structure from the ground with the engine.
 
   ```
-  [sudo] agni-gen --start [name]
+  [sudo] aggain --start [name]
   ```
 
 ## Structure
@@ -44,67 +44,67 @@ Each part was a functional component of the application, but each one of them ha
 ### Bin 
 
   ```
-  [sudo] agni-gen --bin [name] 
+  [sudo] aggain --bin [name] 
   ```
 
 ### App 
 
   ```
-  [sudo] agni-gen --app [name] 
+  [sudo] aggain --app [name] 
   ```
 
 ### Route 
 
   ```
-  [sudo] agni-gen --route [name] 
+  [sudo] aggain --route [name] 
   ```
 
 ### Modules
 
   ```
-  [sudo] agni-gen --module [name] 
+  [sudo] aggain --module [name] 
   ```
 
 ### Middlewares
 
   ```
-  [sudo] agni-gen --middleware [name]
+  [sudo] aggain --middleware [name]
   ```
 
 ### Models
 
   ```
-  [sudo] agni-gen --model [name]
+  [sudo] aggain --model [name]
   ```
 
 ### Plugins
 
   ```
-  [sudo] agni-gen --plugin [name]
+  [sudo] aggain --plugin [name]
   ```
 
 ### Controllers
 
   ```
-  [sudo] agni-gen --controller [name]
+  [sudo] aggain --controller [name]
   ```
 
 ### Config
 
   ```
-  [sudo] agni-gen --configuration [name]
+  [sudo] aggain --configuration [name]
   ```
 
 ### Test 
 
   ```
-  [sudo] agni-gen --test [name]
+  [sudo] aggain --test [name]
   ```
 
 ### Job 
 
   ```
-  [sudo] agni-gen --job [name]
+  [sudo] aggain --job [name]
   ```
 
 ## Contribute

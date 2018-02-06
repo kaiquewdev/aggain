@@ -18,4 +18,10 @@ describe('format', function () {
     aggain.format('class', 'test_case-class').should.be.eql('TestCaseClass');
     done();
   });
+
+  it('should be transform a label into a valid pattern base on variable', done => {
+    aggain.format('variable', 'test-case').should.be.eql('testCase');
+    aggain.format('variable', 'test_case').should.be.eql('testCase');
+    done();
+  });
 });

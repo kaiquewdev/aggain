@@ -9,16 +9,6 @@ describe('format', function () {
     this.dotAgniLocation = path.resolve(dir, '.agni');
   });
 
-  it('should be transform label into a valid pattern', function (done) {
-    aggain.format('variable', 'test-case').should.be.eql('testCase');
-    aggain.format('variable', 'test_case').should.be.eql('testCase');
-    aggain.format('method', 'test-case').should.be.eql('testCaseHandler');
-    aggain.format('method', 'test_case').should.be.eql('testCaseHandler');
-    aggain.format('class', 'person').should.be.eql('Person');
-    aggain.format('class', 'test_case-class').should.be.eql('TestCaseClass');
-    done();
-  });
-
   it('should be transform a label into a valid pattern based on variable', done => {
     aggain.format('variable', 'test-case').should.be.eql('testCase');
     aggain.format('variable', 'test_case').should.be.eql('testCase');
@@ -28,6 +18,12 @@ describe('format', function () {
   it('should be transform a label in a valid pattern based on method', done => {
     aggain.format('method', 'test-case').should.be.eql('testCaseHandler');
     aggain.format('method', 'test_case').should.be.eql('testCaseHandler');
+    done();
+  });
+
+  it('should be transform a label in a valid pattern base on class', done => {
+    aggain.format('class', 'person').should.be.eql('Person');
+    aggain.format('class', 'test_case-class').should.be.eql('TestCaseClass');
     done();
   });
 });

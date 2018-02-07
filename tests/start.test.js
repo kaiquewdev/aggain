@@ -1,13 +1,13 @@
 // file: tests/start.test.js - created at 2015-01-01, 08:38
-var should = require('should');
-var agni = require('../lib');
-var fs = require('fs');
-var path = require('path');
-var exec = require('child_process').exec;
+const should = require('should');
+const agni = require('../lib');
+const fs = require('fs');
+const path = require('path');
+const exec = require('child_process').exec;
 
-describe('start', function () {
-  var dir = path.resolve(process.cwd(), './tests/case/new-structure');
-  var dotAgniLocation = path.resolve(dir, '.agni');
+describe('start', () => {
+  let dir = path.resolve(process.cwd(), './tests/case/new-structure');
+  let dotAgniLocation = path.resolve(dir, '.agni');
 
   global.fs = fs;
   global.path = path;

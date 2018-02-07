@@ -19,9 +19,15 @@ describe('format', function () {
     done();
   });
 
-  it('should be transform a label into a valid pattern base on variable', done => {
+  it('should be transform a label into a valid pattern based on variable', done => {
     aggain.format('variable', 'test-case').should.be.eql('testCase');
     aggain.format('variable', 'test_case').should.be.eql('testCase');
+    done();
+  });
+
+  it('should be transform a label in a valid pattern based on method', done => {
+    aggain.format('method', 'test-case').should.be.eql('testCaseHandler');
+    aggain.format('method', 'test_case').should.be.eql('testCaseHandler');
     done();
   });
 });
